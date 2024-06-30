@@ -1,0 +1,30 @@
+.app-logo {
+  display: flex;
+  gap: 0;
+  width: 306px;
+  height: 90px;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-button {
+  color: #ccc;
+  cursor: pointer;
+}
+.header-button {
+  position: relative;
+  display: inline-block;
+}
+
+.header-button .hover-text {
+  display: none;
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.header-button:hover .hover-text {
+  display: block;
+}

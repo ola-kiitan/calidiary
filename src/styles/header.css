@@ -1,12 +1,12 @@
 .app-logo {
   display: flex;
-  gap: 0;
-  width: 306px;
+  width: 90%;
   height: 90px;
-  margin: 0 auto;
-  justify-content: space-between;
+  margin: 0 auto 20px auto;
+  justify-content: space-around;
   align-items: center;
 }
+
 .header-button {
   color: #ccc;
   cursor: pointer;

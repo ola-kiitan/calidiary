@@ -90,3 +90,7 @@ button {
   color: #ccc;
   margin: 30px 8%;
 }
+.error{
+  color: Red;
+  margin: 10px 8%;
+}

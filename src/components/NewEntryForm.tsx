@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addEntry } from '../diarySlice'
+import { addEntry } from '../state/diarySlice'
 import Dropdown from './Dropdown'
 import '../styles/form.css'
 
@@ -10,18 +10,32 @@ interface NewEntry {
   content: string
   tags: string[]
 }
+export const possibleTags = ['sport', 'study', 'work', 'hobby']
+
 const NewEntryForm = () => {
-  const [content, setContent] = useState('')
-  const [date, setDate] = useState('')
+  const [content, setContent] = useState<string>('')
+  const [date, setDate] = useState<string>('')
   const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
   const dispatch = useDispatch()
-  const possibleTags = ['sport', 'study', 'work', 'hobby']
+
   const handleSelectionChange = (selected: string[]) => {
     setSelectedTags(selected)
   }
+
+  const validateForm = (): boolean => {
+    if (!content.trim()) {
+      setErrorMessage('Content is required.')
+      return false
+    }
+    setErrorMessage(null)
+    return true
+  }
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    // Generate a unique 'id' for each entry
+    if (!validateForm()) {
+      return
+    }
     const id = Math.floor(Math.random() * 10000)
     const newEntry: NewEntry = {
       date: date ? new Date(date) : new Date(),
@@ -37,6 +51,7 @@ const NewEntryForm = () => {
 
   return (
     <form className='new-entry-form' onSubmit={handleSubmit}>
+      {errorMessage && <div className='error'>{errorMessage}</div>}
       <textarea
         name='content'
         onChange={(event) => setContent(event.target.value)}
@@ -54,6 +69,7 @@ const NewEntryForm = () => {
       ))}
       <Dropdown
         options={possibleTags}
+        selectedTags={selectedTags}
         onSelectionChange={handleSelectionChange}
       />
       <div className='form-footer'>

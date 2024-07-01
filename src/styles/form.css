@@ -13,6 +13,7 @@
   animation: slideIn 1s ease-out forwards;
   position: relative;
   margin: 0 auto;
+  padding-bottom: 20px;
   left: 0;
   transform: translateY(-100%);
 }
@@ -37,6 +38,7 @@
   font-size: 0.8rem;
   color: #fff;
   display: flex;
+  align-items: center;
   cursor: pointer;
 }
 @keyframes fadeIn {
@@ -50,16 +52,18 @@
   }
 }
 .tag-dropdown {
-  z-index: 1;
+  z-index: 9;
   position: absolute;
   cursor: pointer;
   animation: fadeIn 0.5s ease-out;
-  width: 80%;
+  width: 40%;
+  height: 150px;
   border: 1px solid #ddd;
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 }
+
 .tag-dropdown-item {
   display: flex;
   height: 30px;
@@ -99,7 +103,7 @@
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  max-width: 88%;
+  max-width: 100%;
 }
 .date-input {
   border-radius: 5px;
@@ -117,24 +121,30 @@
   border-radius: 5px;
   cursor: pointer;
 }
+/* media query to make button bigger on large screens */
+@media screen and (min-width: 768px) {
+  .date-input + button {
+    padding: 10px 20px;
+    font-size: 1rem;
+  }
+}
 .date-input {
   color: #2b3036;
 }
 .article-card {
   width: 80%;
-  margin: 0 auto;
-  margin-bottom: 10px;
+  margin: 0 auto 10px;
   padding: 5px 10px 10px;
   border-radius: 5px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   display: grid;
-  grid-template-rows: 10px 70px 10px;
+  grid-template-rows: 8px 70px 8px;
   grid-template-columns: 30px 30px 50px auto;
   grid-template-areas:
-    'blank blank blank tags'
-    'content content content content'
-    'date date date delete';
+    "blank blank blank tags"
+    "content content content content"
+    "date date date delete";
   justify-content: space-between;
   align-items: center;
   animation: fadeIn 1s ease-out forwards;
@@ -148,7 +158,9 @@
 }
 .article-card-content {
   grid-area: content;
-  font-size: 1.2rem;
+  font-size: 0.85rem;
+  padding: 0;
+  align-self: self-start;
   color: #2b3036;
 }
 .article-card-date {

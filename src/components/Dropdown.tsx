@@ -1,54 +1,53 @@
-import React, { useState } from 'react'
-import tagIcon from '../assets/tag.svg'
-import '../styles/form.css'
+import React, { useState } from "react";
+import TagIcon from "../assets/icons/Tag";
+import "../styles/form.css";
 
 interface DropdownProps {
-  options: string[]
-  onSelectionChange: (selected: string[]) => void
+  options: string[];
+  onSelectionChange: (selected: string[]) => void;
+  selectedTags: string[];
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ options, onSelectionChange }) => {
-  const [isOpen, setIsOpen] = useState(false)
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([])
-
-  const toggleDropdown = () => setIsOpen(!isOpen)
-  const closeDropdown = (event: React.MouseEvent) => {
-    event.stopPropagation()
-    setIsOpen(false)
-  }
+const Dropdown: React.FC<DropdownProps> = ({ options, selectedTags, onSelectionChange }) => {
+  const [isHovering, setIsHovering] = useState(false);
+  const showDropdown = () => setIsHovering(true);
+  const hideDropdown = () => setIsHovering(false);
 
   const handleOptionChange = (option: string) => {
-    const newSelectedOptions = selectedOptions.includes(option)
-      ? selectedOptions.filter((o) => o !== option)
-      : [...selectedOptions, option]
-    setSelectedOptions(newSelectedOptions)
-    onSelectionChange(newSelectedOptions)
-  }
+    const newSelectedOptions = selectedTags.includes(option)
+      ? selectedTags.filter((o: string) => o !== option)
+      : [...selectedTags, option];
+    onSelectionChange(newSelectedOptions);
+  };
+
   return (
     <div>
-      <div className='tag-label' onClick={toggleDropdown}>
-        <img src={tagIcon} alt='tag' /> <p>Add tags</p>
-      </div>
-      {isOpen && (
-        <div className='tag-dropdown'>
-          {options.map((option) => (
-            <label key={option} className='tag-dropdown-item'>
-              <input
-                type='checkbox'
-                checked={selectedOptions.includes(option)}
-                onChange={() => handleOptionChange(option)}
-              />
-              <p>{option}</p>
-            </label>
-          ))}
-          <span className='close' onClick={closeDropdown}>
-            X
-          </span>
+      <div className="tag-container" onMouseLeave={hideDropdown}>
+        <div className="tag-label">
+          <TagIcon />
+          <p onMouseEnter={showDropdown}>Add tags</p>
         </div>
-      )}
-      <div></div>
-    </div>
-  )
-}
 
-export default Dropdown
+        {isHovering && (
+          <div className="tag-dropdown">
+            {options.map(option => (
+              <label key={option} className="tag-dropdown-item">
+                <input
+                  type="checkbox"
+                  checked={selectedTags.includes(option)}
+                  onChange={() => handleOptionChange(option)}
+                />
+                <p>{option}</p>
+              </label>
+            ))}
+            <span className="close" onClick={hideDropdown}>
+              X
+            </span>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Dropdown;

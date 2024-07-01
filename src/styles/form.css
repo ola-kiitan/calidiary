@@ -134,17 +134,18 @@
 .article-card {
   width: 80%;
   margin: 0 auto 10px;
+  height: auto;
   padding: 5px 10px 10px;
   border-radius: 5px;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   display: grid;
-  grid-template-rows: 8px 70px 8px;
+  grid-template-rows: 8px auto 8px;
   grid-template-columns: 30px 30px 50px auto;
   grid-template-areas:
-    "blank blank blank tags"
-    "content content content content"
-    "date date date delete";
+    'blank blank blank tags'
+    'content content content content'
+    'date date date delete';
   justify-content: space-between;
   align-items: center;
   animation: fadeIn 1s ease-out forwards;
@@ -152,9 +153,10 @@
 .article-card-tags {
   grid-area: tags;
   display: flex;
-  gap: 5px;
+  gap: 1px;
   color: #2b3036;
   flex-wrap: wrap;
+  justify-self: end;
 }
 .article-card-content {
   grid-area: content;

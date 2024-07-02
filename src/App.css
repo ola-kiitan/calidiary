@@ -3,7 +3,6 @@
   padding: 0 0.25rem;
   margin: 0 auto;
 }
-/* write a media query condition for tabs and big screens */
 @media (min-width: 768px) {
   .container {
     padding: 0 0.75rem;

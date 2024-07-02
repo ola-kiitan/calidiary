@@ -1,57 +1,61 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { addEntry } from '../state/diarySlice'
-import Dropdown from './Dropdown'
-import '../styles/form.css'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { addEntry } from '../state/diarySlice';
+import Dropdown from './Dropdown';
+import '../styles/form.css';
 
 interface NewEntry {
-  id: number
-  date: Date
-  content: string
-  tags: string[]
+  id: number;
+  date: Date;
+  content: string;
+  tags: string[];
 }
-export const possibleTags = ['sport', 'study', 'work', 'hobby']
+export const possibleTags = ['sport', 'study', 'work', 'hobby'];
 
 const NewEntryForm = () => {
-  const [content, setContent] = useState<string>('')
-  const [date, setDate] = useState<string>('')
-  const [selectedTags, setSelectedTags] = useState<string[]>([])
-  const [errorMessage, setErrorMessage] = useState<string | null>(null)
-  const dispatch = useDispatch()
+  const [content, setContent] = useState('');
+  const [date, setDate] = useState('');
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const dispatch = useDispatch();
 
   const handleSelectionChange = (selected: string[]) => {
-    setSelectedTags(selected)
-  }
+    setSelectedTags(selected);
+  };
 
   const validateForm = (): boolean => {
     if (!content.trim()) {
-      setErrorMessage('Content is required.')
-      return false
+      setErrorMessage('Content is required.');
+      return false;
     }
-    setErrorMessage(null)
-    return true
-  }
+    setErrorMessage(null);
+    return true;
+  };
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+    event.preventDefault();
     if (!validateForm()) {
-      return
+      return;
     }
-    const id = Math.floor(Math.random() * 10000)
+    const id = Math.floor(Math.random() * 10000);
     const newEntry: NewEntry = {
       date: date ? new Date(date) : new Date(),
       content,
       id: id,
       tags: selectedTags,
-    }
-    dispatch(addEntry(newEntry))
-    setContent('')
-    setDate('')
-    setSelectedTags([])
-  }
+    };
+    dispatch(addEntry(newEntry));
+    setContent('');
+    setDate('');
+    setSelectedTags([]);
+  };
 
   return (
     <form className='new-entry-form' onSubmit={handleSubmit}>
-      {errorMessage && <div className='error'>{errorMessage}</div>}
+      {errorMessage && (
+        <div role='alert' className='error'>
+          {errorMessage}
+        </div>
+      )}
       <textarea
         name='content'
         onChange={(event) => setContent(event.target.value)}
@@ -83,7 +87,7 @@ const NewEntryForm = () => {
         <button type='submit'>Add Entry</button>
       </div>
     </form>
-  )
-}
+  );
+};
 
-export default NewEntryForm
+export default NewEntryForm;

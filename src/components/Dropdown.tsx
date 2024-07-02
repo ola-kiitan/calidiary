@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import TagIcon from "../assets/icons/Tag";
-import "../styles/form.css";
+import React, { useState } from 'react';
+import TagIcon from '../assets/icons/Tag';
+import '../styles/form.css';
 
 interface DropdownProps {
   options: string[];
@@ -8,7 +8,11 @@ interface DropdownProps {
   selectedTags: string[];
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ options, selectedTags, onSelectionChange }) => {
+const Dropdown: React.FC<DropdownProps> = ({
+  options,
+  selectedTags,
+  onSelectionChange,
+}) => {
   const [isHovering, setIsHovering] = useState(false);
   const showDropdown = () => setIsHovering(true);
   const hideDropdown = () => setIsHovering(false);
@@ -22,25 +26,24 @@ const Dropdown: React.FC<DropdownProps> = ({ options, selectedTags, onSelectionC
 
   return (
     <div>
-      <div className="tag-container" onMouseLeave={hideDropdown}>
-        <div className="tag-label">
+      <div className='tag-container' onMouseLeave={hideDropdown}>
+        <div className='tag-label'>
           <TagIcon />
           <p onMouseEnter={showDropdown}>Add tags</p>
         </div>
-
         {isHovering && (
-          <div className="tag-dropdown">
-            {options.map(option => (
-              <label key={option} className="tag-dropdown-item">
+          <div className='tag-dropdown'>
+            {options.map((option) => (
+              <label key={option} className='tag-dropdown-item'>
                 <input
-                  type="checkbox"
+                  type='checkbox'
                   checked={selectedTags.includes(option)}
                   onChange={() => handleOptionChange(option)}
                 />
                 <p>{option}</p>
               </label>
             ))}
-            <span className="close" onClick={hideDropdown}>
+            <span className='close' onClick={hideDropdown}>
               X
             </span>
           </div>

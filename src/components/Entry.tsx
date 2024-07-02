@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { removeEntry } from "../state/diarySlice";
-import DeleteIcon from "../assets/icons/Delete";
-import Modal from "./Modal";
-import {format} from "date-fns";
-import "../index";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { removeEntry } from '../state/diarySlice';
+import DeleteIcon from '../assets/icons/Delete';
+import Modal from './Modal';
+import { format } from 'date-fns';
 
 interface EntryProps {
   id: number;
@@ -23,22 +22,22 @@ const Entry: React.FC<EntryProps> = ({ date, content, tags, id }) => {
     setModalOpen(false);
     dispatch(removeEntry(id));
   };
-const formattedDate = format(date, 'EE, dd.MM.yyyy')
+  const formattedDate = format(date, 'EE, dd.MM.yyyy');
   return (
     <>
-      <article className="article-card">
-        <p className="article-card-tags">
-          {tags.map(tag => (
-            <span key={tag} className="selected-tag">
+      <article className='article-card'>
+        <p className='article-card-tags'>
+          {tags.map((tag) => (
+            <span key={tag} className='selected-tag'>
               {tag}
             </span>
           ))}
         </p>
-        <p className="article-card-content">{content}</p>
-    <time className="article-card-date" dateTime={formattedDate}>
-      {formattedDate}
-    </time>
-        <div className="article-card-delete">
+        <p className='article-card-content'>{content}</p>
+        <time className='article-card-date' dateTime={formattedDate}>
+          {formattedDate}
+        </time>
+        <div className='article-card-delete'>
           <DeleteIcon onClick={handleDelete} />
         </div>
       </article>

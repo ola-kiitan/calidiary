@@ -2,18 +2,16 @@
   display: flex;
   width: 90%;
   height: 90px;
-  margin: 0 auto 20px auto;
+  margin: 0 auto 20px;
   justify-content: space-around;
   align-items: center;
 }
 
 .header-button {
-  color: #ccc;
-  cursor: pointer;
-}
-.header-button {
   position: relative;
   display: inline-block;
+  color: #ccc;
+  cursor: pointer;
 }
 
 .header-button .hover-text {

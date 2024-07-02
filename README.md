@@ -1,3 +1,9 @@
+# Calidiary: Your Personal Diary App
+Calidiary is a simple and secure app designed to be your digital diary. 
+Write down your thoughts, experiences, and emotions every day, and keep them safe and organized.
+
+The Project was built using React, Typescript, Redux toolkit for state management.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

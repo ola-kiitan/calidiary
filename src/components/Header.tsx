@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import NewEntryForm from './NewEntryForm';
 import LogoIcon from '../assets/icons/Logo';
+import NavBar from './NavBar';
 import '../styles/header.css';
 
 const Header: React.FC = () => {
@@ -16,6 +17,7 @@ const Header: React.FC = () => {
         <div className='logo'>
           <LogoIcon />
         </div>
+        <NavBar />
         <span
           role='button'
           aria-label='Add new entry'
